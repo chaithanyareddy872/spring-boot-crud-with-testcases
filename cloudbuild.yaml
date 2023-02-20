@@ -1,0 +1,7 @@
+steps:
+  - id: 'Stage app using mvn appengine plugin'
+    name: 'gcr.io/cloud-builders/mvn'
+    args: [ '--define', 'skipTests', '--settings', 'settings.xml', 'package', 'appengine:stage' ]
+  - id: 'Deploy to app engine'
+    name: 'gcr.io/cloud-builders/gcloud'
+    args: [ 'app', 'deploy', 'target/appengine-staging/app.yaml' ]
